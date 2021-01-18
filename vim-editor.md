@@ -11,7 +11,6 @@ When you open any document using the Vim Editor, you by default enter in **Norma
 In order to enter into Text Editing mode, you need to enter `I` on your keyboard
 
 
-
 ## Basic Normal Mode operations
 
 The following keystrokes are commands without the colon `:`
@@ -26,6 +25,7 @@ Shift + n # Move up / previous occurance
 yy # In normal mode to copy a line
 p # In normal mode to paste the line
 dd # In normal mode to delete a line
+$ #In normal mode to move to the end of a line
 ```
 
 To enter **Command** mode, you can enter the following commands with the colon `:`
