@@ -2,11 +2,15 @@
 
 This is a document baics instructions of using the Vim Editor
 
+
+
 ## Intro, Opening on Vim Editor
 
 When you open any document using the Vim Editor, you by default enter in **Normal** mode. 
 
 In order to enter into Text Editing mode, you need to enter `I` on your keyboard
+
+
 
 ## Basic Normal Mode operations
 
@@ -26,7 +30,12 @@ dd # In normal mode to delete a line
 
 To enter **Command** mode, you can enter the following commands with the colon `:`
 
+
+
+## Command Mode Operations
+
 ### How to check if you are in a command mode or not ?
+
 - Enter `:` and then enter key - `q` - _Quits from the Vim Editor_
 
 ```bash
@@ -79,4 +88,3 @@ In order to search for a particular text, Get into command mode and press `:`
 :%s/yourtext/replacetext/g # Search & replace - greedily/recurring
 :%s/yourtext/replacetext/gc # Search & replace - greedily/recurring but ask for confirmation
 ```
-
