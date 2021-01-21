@@ -1,0 +1,37 @@
+name: Build and Deploy to GKE
+
+on:
+  pull_request:
+    branches:
+      - master
+
+# Environment variables available to all jobs and steps in this workflow
+env:
+  ENGINE_API_KEY: ${{ secrets.BIBLE_API_KEY }}
+
+jobs: 
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Create .env file
+        run: |
+          cd api
+          touch .env
+          echo bible_api_key=${{ secrets.BIBLE_API_KEY }} >> .env
+          echo db_url=${{ secrets.DB_URL }} >> .env
+
+      - name: Delete gitignore
+        run: |
+          rm .gitignore
+
+      - name: Push .env to directory
+        run: |
+          git config user.email "avj2352@gmail.com"
+          git config user.name "avj2352"
+          git add .
+          git commit -m "environment variables"
+ 
