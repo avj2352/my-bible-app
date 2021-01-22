@@ -1,0 +1,25 @@
+{
+  "server": {
+    "port": 5000
+  },
+  "google": {
+    "client_id": "1014313043742-3o8tjkq730kkcuc0gum4efbjs8fbdkpi.apps.googleusercontent.com",
+    "client_secret": "iHuNFNJT-i73D9KuWMEvtQeI",
+    "login_dialog_uri": "",
+    "oauth_redirect_uri": "/auth/google/callback",
+    "access_token_uri": "",
+    "scopes": [
+      "https://www.googleapis.com/auth/plus.login",
+      "https://www.googleapis.com/auth/plus.profile.emails.read"
+    ],
+    "response_type": "code",
+    "grant_type": "authorization_code"
+  },
+  "jwt": {
+    "secret": "bored2020",
+    "expiry": 10
+  },
+  "db": {
+    "uri": "mongodb+srv://admin:zuko2352@own-apps-cluster.4jagm.mongodb.net/bored-v3?authSource=admin&replicaSet=atlas-rtd8tp-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
+  }
+}
