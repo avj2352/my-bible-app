@@ -30,8 +30,7 @@ export class GroupController {
     validatePayload (req) {
         return !req.body.title || req.body.title === '' ||
             !req.body.slug || req.body.slug === '' ||
-            !req.body.description || req.body.description === '' ||
-            !req.body.hasOwnProperty(`premium`);
+            !req.body.description || req.body.description === '';
     }
 
     /**
@@ -43,11 +42,14 @@ export class GroupController {
     async getGroups (req, res) {
         try {
             const user = this.authService.fetchUserDetails(req);
-            if (user) {
+            if (!Boolean(user)) return res.sendStatus(401);
+            else if (user.role === 'admin') {
+                console.log(`Fetching recipes for admin user: ${user.id}`.info);
                 const result = await this.groupService.getAllGroups();
                 return res.json(result);
             } else {
-                const result = await this.groupService.filterGroupsWithoutPremium(false);
+                console.log(`Fetching recipes for the user: ${user.id}`.info);
+                const result = await this.groupService.getAllGroupsByUserId(user.id);
                 return res.json(result);
             }
         } catch (err) {
@@ -66,16 +68,13 @@ export class GroupController {
         // check if authenticated
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
-        // only admin can access
-        if (!this.authService.checkIfAdminUser(user)) return res.sendStatus(401);
         // create record
         if (this.validatePayload(req)) return res.sendStatus(400);
         try {
             const result = await this.groupService.addNewGroup({
                 title: req.body.title,
                 slug: req.body.slug,
-                description: req.body.description,
-                premium: req.body.premium
+                description: req.body.description
             });
             console.log(`${this.logger} - New Record added`, result);
             return res.status(201).send(result._id);
@@ -134,7 +133,6 @@ export class GroupController {
                 title: req.body.title,
                 description: req.body.description,
                 slug: req.body.slug,
-                premium: req.body.premium,
             });
             console.log(`${this.logger} - Record updated: `, result);
             return res.sendStatus(200);

@@ -21,14 +21,13 @@ export const GroupSchema = new Schema({
         type: String,
         required: 'Provide group description'
     },
-    // premium true is only made available for subscribed users
-    premium: {
-        type: Boolean,
-        required: 'Public or Private collection'
+    createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
     }
 });
 
 // Create Text index for Full search
 GroupSchema.index({ title: 'text', description: 'text', slug: 'text' });
 export const GroupModel = mongoose.model('groups', GroupSchema);
-// GroupModel.createIndexes();
+GroupModel.createIndexes();

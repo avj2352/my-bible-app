@@ -3,8 +3,8 @@
     "port": 5000
   },
   "google": {
-    "client_id": "1014313043742-3o8tjkq730kkcuc0gum4efbjs8fbdkpi.apps.googleusercontent.com",
-    "client_secret": "iHuNFNJT-i73D9KuWMEvtQeI",
+    "client_id": "896192510998-26lofha1h9lehlo1ofq4llhhfaualul9.apps.googleusercontent.com",
+    "client_secret": "LLZQYK2pOCf4gph_pKhu5L0o",
     "login_dialog_uri": "",
     "oauth_redirect_uri": "/auth/google/callback",
     "access_token_uri": "",
@@ -16,10 +16,11 @@
     "grant_type": "authorization_code"
   },
   "jwt": {
-    "secret": "bored2020",
-    "expiry": 30
+    "secret": "mba2021",
+    "expiry": 10
   },
   "db": {
-    "uri": "mongodb+srv://admin:zuko2352@own-apps-cluster.4jagm.mongodb.net/bored-v3-dev?authSource=admin&replicaSet=atlas-rtd8tp-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
-  }
+    "uri": "mongodb+srv://admin:zuko2352@own-apps-cluster.4jagm.mongodb.net/my-bible-app-dev?authSource=admin&replicaSet=atlas-rtd8tp-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
+  },
+  "bible_api": "be4666b0d2msh7df854409ac980bp11bc3ajsncf32b40c5d2a"
 }

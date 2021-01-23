@@ -11,11 +11,6 @@ export const USER_ROLES = {
     ADMIN: 'admin'
 };
 
-export const USER_STATUS = {
-    INACTIVE: 'inactive',
-    ACTIVE: 'active'
-}
-
 export const UserSchema = new Schema({
     googleId: {
       type: String,
@@ -33,18 +28,7 @@ export const UserSchema = new Schema({
         type: String,
         default: USER_ROLES.FREE
     },
-    status: {
-        type: String,
-        default: USER_STATUS.INACTIVE
-    },
-    collectionCount: {
-        type: Number,
-        default: 5
-    },
-    draftCount: {
-        type: Number,
-        default: 5
-    }
+
 });
 
 mongoose.model('users', UserSchema);
