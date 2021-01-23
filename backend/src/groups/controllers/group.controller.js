@@ -102,11 +102,11 @@ export class GroupController {
      */
     async getGroupById (req, res) {
         // check if authenticated
-        console.log(`${this.logger} - Group ID is: ${JSON.stringify(req.params.groupId)}`.info);
+        console.log(`${this.logger} - Group ID is: ${JSON.stringify(req.params.id)}`.info);
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
         try {
-            const result = await this.groupService.getGroupById(req.params.groupId);
+            const result = await this.groupService.getGroupById(req.params.id);
             return res.json(result);
         } catch (err) {
             console.log(`${this.logger} Error Retrieving Id: ${JSON.stringify(err)}`.error);
@@ -122,14 +122,14 @@ export class GroupController {
      */
     async updateGroupById (req, res) {
         // check if authenticated
-        console.log(`${this.logger} - Update group ID is: ${JSON.stringify(req.params.groupId)}`.info);
+        console.log(`${this.logger} - Update group ID is: ${JSON.stringify(req.params.id)}`.info);
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
         if (this.validatePayload(req)) {
             return res.sendStatus(400);
         }
         try {
-            const result = await this.groupService.updateGroupById(req.params.groupId, {
+            const result = await this.groupService.updateGroupById(req.params.id, {
                 title: req.body.title,
                 description: req.body.description,
                 slug: req.body.slug,
@@ -150,11 +150,11 @@ export class GroupController {
      */
     async deleteGroupById (req, res) {
         // check if authenticated
-        console.log(`${this.logger} - Delete group ID: ${JSON.stringify(req.params.groupId)}`.info);
+        console.log(`${this.logger} - Delete group ID: ${JSON.stringify(req.params.id)}`.info);
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
         try {
-            const result = await this.groupService.deleteGroupById(req.params.groupId);            
+            const result = await this.groupService.deleteGroupById(req.params.id);            
             return res.sendStatus(200);
         } catch (err) {
             console.log(`${this.logger} Error updating record: ${JSON.stringify(err)}`.error);
