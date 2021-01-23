@@ -1,11 +1,11 @@
 require('../../util/colors');
 import { ScriptureModel } from '../models/scripture.model';
-import { ScriptureDao } from '../dao/scripture.dao';
+import { ScriptureDaoClient } from '../dao/scripture.dao';
 
 export class ScriptureService {
     constructor() {
         this.logger = `ScriptureService`;
-        this.daoClient = new ScriptureDao();
+        this.daoClient = new ScriptureDaoClient();
         // bind context
         this.getScriptures = this.getScriptures.bind(this);
         this.addNewScripture = this.addNewScripture.bind(this);
@@ -130,7 +130,7 @@ export class ScriptureService {
      * @returns Object | Error
      * 
      */
-    fetchScriptureVerse(book, chapter, verse) {
+    async fetchScriptureVerse(book, chapter, verse) {
         try {
             const result = await this.daoClient.getScriptureVerse();
             return result;

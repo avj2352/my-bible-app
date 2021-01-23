@@ -49,4 +49,4 @@ export const ArticleSchema = new Schema({
 
 ArticleSchema.index({ title: 'text', content: 'text', html: 'text' });
 export const ArticleModel = mongoose.model('articles', ArticleSchema);
-ArticleModel.createIndexes();
+// ArticleModel.createIndexes();

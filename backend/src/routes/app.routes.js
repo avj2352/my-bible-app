@@ -88,7 +88,7 @@ const routes = (app) => {
         .post(article.addNewArticle);
     
     app.route('/articles/group/:id')
-        .get(article.getArticleByGroupId);
+        .get(article.getArticlesByGroupId);
     
         // RUD Articles
     app.route('/articles/:id')

@@ -20,7 +20,6 @@ export class ArticleController {
         this.addNewArticle = this.addNewArticle.bind(this);
         this.updateArticleById = this.updateArticleById.bind(this);
         this.deleteArticleById = this.deleteArticleById.bind(this);
-        this.getArticleByGroupId = this.getArticleByGroupId.bind(this);
         this.search = this.search.bind(this);
     }
 

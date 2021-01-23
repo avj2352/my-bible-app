@@ -22,4 +22,4 @@ export const ScriptureSchema = new Schema({
 
 ScriptureSchema.index({ book: 'text', chapter: 'text', verse: 'text' });
 export const ScriptureModel = mongoose.model('scriptures', ScriptureSchema);
-ScriptureModel.createIndexes();
+// ScriptureModel.createIndexes();

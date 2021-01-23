@@ -41,6 +41,19 @@ import {User} from "../models/user.model";
     }
 
     /**
+      * PAJ - Find User record by Mongo DB id
+      * @param id string - Mongo DB Id
+      **/
+     async findUserRecordById (id) {
+        const result = await User.findById(id);
+        if (result) {
+            return result;
+        } else {
+            return null;
+        }
+    }
+
+    /**
     * PAJ - Find User record by Google profile ID
     * @param id string - google profile id
     **/

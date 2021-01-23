@@ -30,4 +30,4 @@ export const GroupSchema = new Schema({
 // Create Text index for Full search
 GroupSchema.index({ title: 'text', description: 'text', slug: 'text' });
 export const GroupModel = mongoose.model('groups', GroupSchema);
-GroupModel.createIndexes();
+// GroupModel.createIndexes();
