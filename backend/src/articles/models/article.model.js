@@ -1,16 +1,16 @@
 /**
- * Model for Items - (Vegetables, Fruits, Spices) server side schema
+ * Model for Articles - server side schema
  */
 import mongoose, { Schema } from 'mongoose';
 
-export const RecipeSchema = new Schema({
+export const ArticleSchema = new Schema({
     created: {
         type: Date,
         default: Date.now
     },
     title: {
         type: String,
-        required: 'Enter Recipe Title',
+        required: 'Enter Article Title',
         unique: true,
         lowercase: true,
         trim: true,
@@ -18,25 +18,17 @@ export const RecipeSchema = new Schema({
     link: {
         type: String,
         trim: true
-    },
-    isPrivate: {
-        type: Boolean,
-        default: false
-    },
+    },    
     content: {
         type: String,
-        required: 'Enter Recipe Content',
+        required: 'Enter Article Content',
         trim: true
     },
     html: {
         type: String,
-        required: 'Enter Recipe Content in HTML',
+        required: 'Enter Article Content in HTML',
     },
     createdBy: {
-        type: Schema.Types.ObjectId,
-        ref: 'users'
-    },
-    updatedBy: {
         type: Schema.Types.ObjectId,
         ref: 'users'
     },
@@ -49,16 +41,12 @@ export const RecipeSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'tags'
     }],
-    items: [{
+    scriptures: [{
         type: Schema.Types.ObjectId,
-        ref: 'items'
-    }],
-    timers: [{
-        type: Schema.Types.ObjectId,
-        ref: 'timers'
+        ref: 'scriptures'
     }]
 });
 
-RecipeSchema.index({ title: 'text', content: 'text', html: 'text' });
-export const RecipeModel = mongoose.model('recipes', RecipeSchema);
-// RecipeModel.createIndexes();
+ArticleSchema.index({ title: 'text', content: 'text', html: 'text' });
+export const ArticleModel = mongoose.model('articles', ArticleSchema);
+ArticleModel.createIndexes();

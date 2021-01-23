@@ -1,41 +1,57 @@
 /**
- * PAJ - Recipe Service Layer
+ * PAJ - Article Service Layer
  * */
-require('./../../util/colors');
-import { RecipeModel } from './../models/recipe.model';
+require('../../util/colors');
+import { ArticleModel } from '../models/article.model';
 
-export class RecipeService {
+export class ArticleService {
     constructor() {
-        this.logger = 'RecipeService';
-        //bind context
-        this.getAllRecipes = this.getAllRecipes.bind(this);
-        this.getPublicRecipes = this.getPublicRecipes.bind(this);
-        this.getRecipesByUserId = this.getRecipesByUserId.bind(this);
-        this.getAllRecipesByUserId = this.getAllRecipesByUserId.bind(this);
-        this.getRecipebyId = this.getRecipebyId.bind(this);
-        this.getPublicRecipesbyGroupId = this.getPublicRecipesbyGroupId.bind(this);
-        this.addNewRecipe = this.addNewRecipe.bind(this);
-        this.updateRecipeById = this.updateRecipeById.bind(this);
-        this.deleteRecipeById = this.deleteRecipeById.bind(this);
+        this.logger = 'ArticleService';
+        //bind context   
+        this.getAllArticles = this.getAllArticles.bind(this);
+        this.getArticlesByUserId = this.getArticlesByUserId.bind(this);
+        this.getArticlesByGroupId = this.getArticlesByGroupId.bind(this);
+        this.getArticlebyId = this.getArticlebyId.bind(this);        
+        this.addNewArticle = this.addNewArticle.bind(this);
+        this.updateArticleById = this.updateArticleById.bind(this);
+        this.deleteArticleById = this.deleteArticleById.bind(this);
         this.searchFullText = this.searchFullText.bind(this);
         this.searchPartialText = this.searchPartialText.bind(this);
     }
 
 
-
     /**
-     * Get all recipe records
+     * Get all article records
      * @returns {Promise<any>}
      */
-    async getAllRecipes () {
+    async getAllArticles () {
         return new Promise((resolve, reject) => {
-            RecipeModel.find()
+            ArticleModel.find()
                 .lean().populate('createdBy', 'name email')
                 .lean().populate('updatedBy', 'name email')
                 .populate('group')
                 .populate('tags')
-                .populate('items')
-                .populate('timers')
+                .populate('scriptures')
+                .exec((err, data) => {
+                    if (err) reject(err);
+                    else resolve(data);
+                });
+        });
+    }
+
+   
+    /**
+     * Get all article records of a particular user
+     * @returns {Promise<any>}
+     */
+    async getArticlesByUserId (userId) {
+        return new Promise((resolve, reject) => {
+            ArticleModel.find({createdBy: userId})
+                .lean().populate('createdBy', 'name email')
+                .lean().populate('updatedBy', 'name email')
+                .populate('group')
+                .populate('tags')
+                .populate('scriptures')
                 .exec((err, data) => {
                     if (err) reject(err);
                     else resolve(data);
@@ -44,18 +60,17 @@ export class RecipeService {
     }
 
     /**
-     * Get all recipe records
+     * Get all article records of a particular group
      * @returns {Promise<any>}
      */
-    async getPublicRecipes () {
+    async getArticlesByGroupId (groupId) {
         return new Promise((resolve, reject) => {
-            RecipeModel.find({isPrivate: false})
+            ArticleModel.find({group: groupId})
                 .lean().populate('createdBy', 'name email')
                 .lean().populate('updatedBy', 'name email')
                 .populate('group')
                 .populate('tags')
-                .populate('items')
-                .populate('timers')
+                .populate('scriptures')
                 .exec((err, data) => {
                     if (err) reject(err);
                     else resolve(data);
@@ -64,60 +79,18 @@ export class RecipeService {
     }
 
     /**
-     * Get all recipe records of a particular user
-     * @returns {Promise<any>}
-     */
-    async getRecipesByUserId (userId) {
-        return new Promise((resolve, reject) => {
-            RecipeModel.find({createdBy: userId})
-                .lean().populate('createdBy', 'name email')
-                .lean().populate('updatedBy', 'name email')
-                .populate('group')
-                .populate('tags')
-                .populate('items')
-                .populate('timers')
-                .exec((err, data) => {
-                    if (err) reject(err);
-                    else resolve(data);
-                });
-        });
-    }
-
-    /**
-     * Get all recipe records by User Id
-     * @params userId
-     * @returns {Promise<any>}
-     */
-    async getAllRecipesByUserId (userId) {
-        return new Promise((resolve, reject) => {
-            RecipeModel.find({createdBy: userId, isPrivate: true})
-                .lean().populate('createdBy', 'name email')
-                .lean().populate('updatedBy', 'name email')
-                .populate('group')
-                .populate('tags')
-                .populate('items')
-                .populate('timers')
-                .exec((err, data) => {
-                    if (err) reject(err);
-                    else resolve(data);
-                });
-        });
-    }
-
-    /**
-     * Get recipe by record id
+     * Get article by record id
      * @param id
      * @returns {Promise<any>}
      */
-    async getRecipebyId (id) {
+    async getArticlebyId (id) {
         return new Promise((resolve, reject) => {
-            RecipeModel.find({_id: id})
+            ArticleModel.find({_id: id})
                 .lean().populate('createdBy', 'name email')
                 .lean().populate('updatedBy', 'name email')
                 .populate('group')
                 .populate('tags')
-                .populate('items')
-                .populate('timers')
+                .populate('scriptures')
                 .exec((err, data) => {
                     if (err) reject(err);
                     else resolve(data);
@@ -125,52 +98,28 @@ export class RecipeService {
         });
     }
 
+    
     /**
-     * Get recipe by record id
-     * @param id
-     * @returns {Promise<any>}
-     */
-    async getPublicRecipesbyGroupId (id) {
-        return new Promise((resolve, reject) => {
-            RecipeModel.find({group: id, isPrivate: false})
-                .lean().populate('createdBy', 'name email')
-                .lean().populate('updatedBy', 'name email')
-                .populate('group')
-                .populate('tags')
-                .populate('items')
-                .populate('timers')
-                .exec((err, data) => {
-                    if (err) reject(err);
-                    else resolve(data);
-                });
-        });
-    }
-
-
-
-    /**
-     * Add new recipe record
-     * @param payload { title, link, isPrivate, description, content, html, userId, groupId, tags, items, timers }
+     * Add new article record
+     * @param payload { title, link, content, html, userId, groupId, tags, scriptures }
      * @param userId
      * @returns {Promise<any>}
      */
-    async addNewRecipe (payload) {
+    async addNewArticle (payload) {
         return new Promise((resolve, reject) => {
-            const { title, link, isPrivate, userId, content, html, groupId, tags, items, timers } = payload;
-            let newRecipeRecord = new RecipeModel({
+            const { title, link, content, html, userId, groupId, tags, scriptures } = payload;
+            let newArticleRecord = new ArticleModel({
                 title,
                 link,
-                isPrivate,
                 content,
                 html,
                 createdBy: userId,
                 updatedBy: userId,
                 group: groupId,
                 tags,
-                items,
-                timers,
+                scriptures
             });
-            newRecipeRecord.save((err, data) => {
+            newArticleRecord.save((err, data) => {
                 if (err) reject(err);
                 else resolve(data);
             });
@@ -178,25 +127,24 @@ export class RecipeService {
     }
 
     /**
-     * Update recipe by its record id
+     * Update Article by its record id
      * @param payload { title, link, description, content, html, userId, groupId, tags, items, timers }
      * @param userId
      * @returns {Promise<any>}
      */
-    async updateRecipeById (id, payload) {
+    async updateArticleById (id, payload) {
         return new Promise((resolve, reject) => {
-            const { title, link, isPrivate, content, html, userId, groupId, tags, items, timers, comments } = payload;
-            RecipeModel.findOneAndUpdate({_id: id}, {
+            const { title, link, content, html, userId, groupId, tags, scriptures } = payload;
+            ArticleModel.findOneAndUpdate({_id: id}, {
                 title,
                 link,
-                isPrivate,
-                updatedBy: userId,
                 content,
                 html,
+                createdBy: userId,
+                updatedBy: userId,
                 group: groupId,
-                items,
                 tags,
-                timers,
+                scriptures
             }, {new: true}, (err, data) => {
                 if (err) reject(err);
                 else resolve(data); // Get JSON format of contact
@@ -206,13 +154,13 @@ export class RecipeService {
 
 
     /**
-     * Delete recipe by record id
+     * Delete Article by record id
      * @param id
      * @returns {Promise<any>}
      */
-    async deleteRecipeById (id) {
+    async deleteArticleById (id) {
         return new Promise((resolve, reject) => {
-            RecipeModel.deleteOne({_id: id}, (err) => {
+            ArticleModel.deleteOne({_id: id}, (err) => {
                 if (err) reject(err);
                 else resolve(); // Get JSON format of contact
             });
@@ -227,13 +175,12 @@ export class RecipeService {
     async searchFullText (text) {
         console.log('Calling Full text query: ', text);
         return new Promise((resolve, reject) => {
-            RecipeModel.find({$text: {$search: text}})
+            ArticleModel.find({$text: {$search: text}})
             .lean().populate('createdBy', 'name email')
                 .lean().populate('updatedBy', 'name email')
                 .populate('group')
                 .populate('tags')
-                .populate('items')
-                .populate('timers')
+                .populate('scriptures')
                 .exec((err, data) => {
                     if (err) reject(err);
                     else resolve(data);
@@ -248,13 +195,12 @@ export class RecipeService {
      */
     async searchPartialText (partial) {
         return new Promise((resolve, reject) => {
-            RecipeModel.find({html: {$regex: new RegExp(partial)}}, {_id:0, __v:0})
+            ArticleModel.find({html: {$regex: new RegExp(partial)}}, {_id:0, __v:0})
             .lean().populate('createdBy', 'name email')
                 .lean().populate('updatedBy', 'name email')
                 .populate('group')
                 .populate('tags')
-                .populate('items')
-                .populate('timers')
+                .populate('scriptures')
                 .exec((err, data) => {
                     if (err) reject(err);
                     else resolve(data);

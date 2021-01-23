@@ -1,26 +1,26 @@
 /**
- * CRUD - Controller for Recipe Model
+ * CRUD - Controller for Article Model
  */
-require('./../../util/colors');
-import { RecipeService } from "../services/recipe.service";
+require('../../util/colors');
+import { ArticleService } from "../services/article.service";
 import { AuthService } from "../../auth/services/auth.service";
 
-export class RecipeController {
+export class ArticleController {
 
     constructor() {
-        this.logger = 'RecipeController';
-        this.recipeService = new RecipeService();
+        this.logger = 'ArticleController';
+        this.articleService = new ArticleService();
         this.authService = new AuthService();
         // bind context
         this.validatePayload = this.validatePayload.bind(this);
-        this.getRecipes = this.getRecipes.bind(this);
-        this.getPublicRecipes = this.getPublicRecipes.bind(this);
-        this.getRecipesByUserId = this.getRecipesByUserId.bind(this);
-        this.getRecipeById = this.getRecipeById.bind(this);
-        this.addNewRecipe = this.addNewRecipe.bind(this);
-        this.updateRecipeById = this.updateRecipeById.bind(this);
-        this.deleteRecipeById = this.deleteRecipeById.bind(this);
-        this.getRecipeByGroupId = this.getRecipeByGroupId.bind(this);
+        this.getArticles = this.getArticles.bind(this);
+        this.getArticlesByUserId = this.getArticlesByUserId.bind(this);
+        this.getArticlesByGroupId = this.getArticlesByGroupId.bind(this);
+        this.getArticleById = this.getArticleById.bind(this);
+        this.addNewArticle = this.addNewArticle.bind(this);
+        this.updateArticleById = this.updateArticleById.bind(this);
+        this.deleteArticleById = this.deleteArticleById.bind(this);
+        this.getArticleByGroupId = this.getArticleByGroupId.bind(this);
         this.search = this.search.bind(this);
     }
 
@@ -32,70 +32,46 @@ export class RecipeController {
      */
     validatePayload (req) {
         // console.log('Payload is: ', req.body.title,
-        //     req.body.isPrivate, req.body.content, req.body.group, req.body.tags, req.body.items, req.body.timers);
+        //     req.body.link, req.body.content, req.body.html, req.body.group, req.body.tags, req.body.scriptures);
         return !req.body.title || req.body.title === '' ||
-            !req.body.hasOwnProperty('isPrivate') ||
             !req.body.hasOwnProperty('link') ||
             !req.body.content || req.body.content === '' ||
             !req.body.html || req.body.html === '' ||
             !req.body.group || req.body.group === '' ||
             !req.body.tags || !Array.isArray(req.body.tags) ||
-            !req.body.items || !Array.isArray(req.body.items) ||
-            !req.body.timers || !Array.isArray(req.body.timers);
+            !req.body.scriptures || !Array.isArray(req.body.scriptures);
     }
 
     /**
-     * PAJ - Fetch all Recipes.
+     * PAJ - Fetch all Articles.
      * @param req
      * @param res
      * @returns {Promise<any>}
      */
-    async getRecipes (req, res) {
+    async getArticles (req, res) {
         try {
             const user = this.authService.fetchUserDetails(req);
-            if (user) {
-                console.log(`User logged in, Fetching all recipes`.info);
-                const result = await this.recipeService.getAllRecipes();
-                return res.json(result);
-            } else {
-                console.log(`Fetching all public recipes`.info);
-                const result = await this.recipeService.getPublicRecipes();
-                return res.json(result);
-            }
-        } catch (err) {
-            console.log(`${this.logger} error fetch all recipes: ${JSON.stringify(err)}`.error);
-            return res.sendStatus(500);
-        }
-    }
-
-    /**
-     * PAJ - Fetch only public recipes
-     * @param req 
-     * @param res 
-     */
-    async getPublicRecipes (req, res) {
-        try {
-            console.log(`Fetching all public recipes`.info);
-            const result = await this.recipeService.getPublicRecipes();
+            if (!Boolean(user)) return res.sendStatus(401);
+            const result = await this.articleService.getAllArticles();
             return res.json(result);
         } catch (err) {
-            console.log(`${this.logger} error fetch all recipes: ${JSON.stringify(err)}`.error);
+            console.log(`${this.logger} error fetch all articles: ${JSON.stringify(err)}`.error);
             return res.sendStatus(500);
         }
     }
 
     /***
-     * PAJ - Get Recipe By Id
+     * PAJ - Get Article By Id
      * @param req
      * @param res
      * @returns {Promise<any>}
      */
-    async getRecipesByUserId (req, res) {
+    async getArticlesByUserId (req, res) {
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
-        console.log(`Fetching recipes for the user: ${user.id}`.info);
+        console.log(`Fetching articles for the user: ${user.id}`.info);
         try {
-            const result = await this.recipeService.getRecipesByUserId(user.id);
+            const result = await this.articleService.getArticlesByUserId(user.id);
             return res.json(result);
         } catch (err) {
             console.log(`${this.logger} error fetch recipes by user id : ${JSON.stringify(err)}`.error);
@@ -104,15 +80,15 @@ export class RecipeController {
     }
 
     /***
-     * PAJ - Get Recipe By Group Id
+     * PAJ - Get all Articles By Group Id
      * @param req
      * @param res
      * @returns {Promise<any>}
      */
-    async getRecipeByGroupId (req, res) {
+    async getArticlesByGroupId (req, res) {
         try {
-            console.log(`Fetching all public recipes`.info);
-            const result = await this.recipeService.getPublicRecipesbyGroupId(req.params.groupId);
+            console.log(`Fetching Articles by Group Id - ${req.params.groupId}`.info);
+            const result = await this.articleService.getArticlesByGroupId(req.params.groupId);
             return res.json(result);
         } catch (err) {
             console.log(`${this.logger} Error Retrieving Id: ${JSON.stringify(err)}`.error);
@@ -126,10 +102,10 @@ export class RecipeController {
      * @param res
      * @returns {Promise<*>}
      */
-    async getRecipeById (req, res) {
-        // console.log(`Fetching Recipe record: ${req.params.recipeId}`.info);
+    async getArticleById (req, res) {
+        // console.log(`Fetching Article record: ${req.params.id}`.info);
         try {
-            const result = await this.recipeService.getRecipebyId(req.params.recipeId);
+            const result = await this.articleService.getArticlebyId(req.params.id);
             return res.json(result);
         } catch (err) {
             console.log(`${this.logger} Error Retrieving Id: ${JSON.stringify(err)}`.error);
@@ -138,28 +114,26 @@ export class RecipeController {
     }
 
     /**
-     * PAJ - Create a new recipe record. Requires Cookie Session
+     * PAJ - Create a new article record. Requires Cookie Session
      * @param req
      * @param res
      * @returns {Promise<any>}
      */
-    async addNewRecipe (req, res) {
+    async addNewArticle (req, res) {
         console.log(`Validating payload`.info);
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
         if (this.validatePayload(req)) return res.status(400).send('Invalid Payload');
         try {
-            const result = await this.recipeService.addNewRecipe({
+            const result = await this.articleService.addNewArticle({
                 title: req.body.title,
                 link: req.body.link ? req.body.link : '',
-                isPrivate: req.body.isPrivate,
                 userId: req.user.id,
                 content: req.body.content,
                 html: req.body.html,
                 groupId: req.body.group,
                 tags: req.body.tags,
-                items: req.body.items,
-                timers: req.body.timers
+                scriptures: req.body.scriptures
             });
             console.log(`${this.logger} - New Record added`, result);
             return res.status(201).send(result._id);
@@ -182,22 +156,20 @@ export class RecipeController {
      * @param res
      * @returns {Promise<*>}
      */
-    async updateRecipeById (req, res) {
+    async updateArticleById (req, res) {
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
         if (this.validatePayload(req)) return res.status(400).send('Invalid Payload');
         try {
-            const result = await this.recipeService.updateRecipeById( req.params.recipeId, {
+            const result = await this.recipeService.updateRecipeById( req.params.id, {
                 title: req.body.title,
                 link: req.body.link ? req.body.link : '',
-                isPrivate: req.body.isPrivate,
                 userId: req.user.id,
                 content: req.body.content,
                 html: req.body.html,
                 groupId: req.body.group,
                 tags: req.body.tags,
-                items: req.body.items,
-                timers: req.body.timers
+                scriptures: req.body.scriptures
             });
             console.log(`${this.logger} - Record updated: `, result);
             return res.sendStatus(200);
@@ -213,11 +185,11 @@ export class RecipeController {
      * @param res
      * @returns {Promise<*>}
      */
-    async deleteRecipeById (req, res) {
+    async deleteArticleById (req, res) {
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
         try {
-            const result = await this.recipeService.deleteRecipeById(req.params.recipeId);
+            const result = await this.articleService.deleteArticleById(req.params.id);
             console.log(`${this.logger} - Record deleted: `, result);
             return res.sendStatus(200);
         } catch (err) {
@@ -245,10 +217,10 @@ export class RecipeController {
             let result;
             console.log(`${this.logger} - Search Type is: ${req.query.type}`.info);
             if (req.query.type === 'full') {
-                result = await this.recipeService.searchFullText(req.query.text);
+                result = await this.articleService.searchFullText(req.query.text);
                 return res.status(200).send(result);
             } else if (req.query.type === 'partial') {
-                result = await this.recipeService.searchPartialText(req.query.text);
+                result = await this.articleService.searchPartialText(req.query.text);
                 return res.status(200).send(result);
             } else {
                 return res.sendStatus(400);
