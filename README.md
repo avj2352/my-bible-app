@@ -39,7 +39,9 @@ This is a clone repository of `I-AM-BORED` which is a Progressive Web applicatio
 
 - Client Secret: `LLZQYK2pOCf4gph_pKhu5L0o`
 
-
+```bash
+--type png
+```
 
 
 
