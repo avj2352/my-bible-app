@@ -19,9 +19,9 @@ export const useThemeOptions = () : ThemeOptions => {
                 "contrastText": "#fff"
             },
             "primary": {
-                "light": "rgb(173,232,244)",
-                "main": "rgb(0,180,216)",
-                "dark": "rgba(0, 150, 199, 1)",
+                "light": "rgb(142,202,230)",
+                "main": "rgb(33,158,188)",
+                "dark": "rgba(21, 101, 121)",
                 "contrastText": "#fff"
             },
             "error": {

@@ -11,7 +11,7 @@ const HomeView: FunctionComponent = (props): JSX.Element => {
     // context
     const appContext: IAppContextState = useGlobalState();
     // states
-    const [heading, setHeading] = useState<string>('Book.Of.Recipes.Easily.Done');
+    const [heading, setHeading] = useState<string>('Loading...');
     const [content, setContent] = useState<JSX.Element>(<HomeSkeletonLoading/>);    
     // styles
     const classes = useStyles();
@@ -29,7 +29,7 @@ const HomeView: FunctionComponent = (props): JSX.Element => {
             }
             else {
                 // console.log('Profile not set', appContext.profile);
-                setHeading(`B.O.R.E.D v${appContext.version}`);
+                setHeading(`${appContext.title} v${appContext.version}`);
                 setContent(<HomeGeneralView/>);
             }
         }, 1500);
@@ -39,7 +39,7 @@ const HomeView: FunctionComponent = (props): JSX.Element => {
         <React.Fragment>            
             <Grid container className={classes.container}>
                 <Grid item xs={12} className={classes.heading}>
-                    <Typography variant="h5"><strong>{heading}</strong></Typography>
+                    <Typography variant="h5" color="secondary"><strong>{heading}</strong></Typography>
                 </Grid>
                 {content}
             </Grid>

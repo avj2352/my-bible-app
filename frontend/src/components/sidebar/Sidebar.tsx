@@ -77,6 +77,14 @@ const Sidebar: FunctionComponent<ISidebarProps> = (props): JSX.Element => {
         });
     },[]);
 
+    const navigateAbout = () => {
+      const location = {
+        pathname: `/about`,
+      };
+      history.push(location);
+      handleDrawerClose();
+    };
+
     const navigateLink = (paramName: string) => {
       const location = {
         pathname: `/app/${paramName}`,
@@ -155,11 +163,10 @@ const Sidebar: FunctionComponent<ISidebarProps> = (props): JSX.Element => {
             </div>
             <Divider />
             <List className={classes.listGroup}>                
-              <ListItem key='All Recipes' button onClick={navigateLink.bind(null, `recipes/list/all`)}>
-                <ListItemIcon><AllIcon/></ListItemIcon>
-                <ListItemText primary='All Recipes' />
+              <ListItem key='about' button onClick={navigateAbout}>
+                <ListItemIcon><DashboardIcon/></ListItemIcon>
+                <ListItemText primary='About' />
               </ListItem>
-              {generalListContent}
               <Divider className={classes.listDivider}/>
               {signedInListContent}
               {adminListContent}

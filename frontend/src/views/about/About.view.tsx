@@ -1,24 +1,14 @@
 import React, { FunctionComponent, useContext, useState, useEffect, useCallback, useRef } from 'react';
 import gsap, { CSSPlugin, TimelineLite, Back } from 'gsap';
-import { FaGoogle } from 'react-icons/fa';
 // material
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 // custom
 import {useStyles} from './about.style';
-import RegisterButton from '../../components/buttons/register-button/RegisterButton';
 import logo from './../../assets/img/logo.png';
-import { authenticateUser } from '../../common/async/AsyncCalls';
-import { addLocalStorageItem } from '../../common/helper/LocalStorageProvider';
-import { LinearLoader } from '../../components/loaders/linear-loader/LinearLoader';
 // context
-import { RouterDispatchContext, NAMED_ROUTES } from '../../router/context/RouterContext';
 import {AppStateContext, CONTEXT_ACTION_TYPE, useGlobalDispatch} from '../../common/context/AppContext';
-import { getUserDetails } from '../../common/async/AsyncCalls';
-import { getLocalStorageItem } from '../../common/helper/LocalStorageProvider';
 // notification
 import { SimpleNotification, NOTIFICATION_TYPE } from '../../common/snackbar/SnackbarHelper';
 import SimpleLinkButton from '../../components/buttons/links/SimpleLinkButton';
@@ -31,11 +21,7 @@ gsap.registerPlugin(CSSPlugin);
 const AboutView : FunctionComponent = () => {
     const classes = useStyles();
     const appContext = useContext(AppStateContext);
-    const routeDispatch: any = useContext(RouterDispatchContext);
     const appDispatch: any = useGlobalDispatch();
-    //states    
-    const [noteMsg, setNoteMsg] = useState('');
-    const [isLoading, setLoading] = useState(false);
     //refs    
     let aboutRef = useRef<HTMLButtonElement>(document.createElement("button"));
     let loginBoxDom = useRef<HTMLDivElement>(document.createElement("div"));
@@ -68,22 +54,22 @@ const AboutView : FunctionComponent = () => {
     return (
         <React.Fragment>
             <Grid container spacing={1} className={classes.root} alignItems="center">
-                <SimpleNotification type={NOTIFICATION_TYPE.ERROR} message={noteMsg} />
                 <Paper className={classes.paper} ref={loginBoxDom}>
                     <div className={classes.contentWrapper}>
                         <img src={logo} className={classes.imageIcon} alt="logo"/>                         
                         <Typography align="center" className={classes.title}>
-                            {`I AM B.O.R.E.D v${appContext.version}`}
+                            {`${appContext.title} v${appContext.version}`}
                         </Typography>      
                         <Typography color="textSecondary" align="center" className={classes.content}>
                             This is a simple web Application <br/>
-                            in which you can create, store & share <br/>
-                            your favourite recipes with people.
+                            in which you can study &amp; store <br/>
+                            bible study notes, scriptures &amp; messages.
                         </Typography>                      
                         <Typography color="textSecondary" align="center" className={classes.content}>
                             {`v${appContext.version}`} now supports Social Login, <br/>
-                            Dark & Light Themes, <br/>
-                            Ability to create, store and tag recipe items
+                            Dark &amp; Light Themes, <br/>
+                            Ability to fetch scriptures from <br/>
+                            the Bible API (NKJV)
                         </Typography>
                         <Typography color="textSecondary" align="center" className={classes.content}>
                             If you think this recipe app was useful, <br/>

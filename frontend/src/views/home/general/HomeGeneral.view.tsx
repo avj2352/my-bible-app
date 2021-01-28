@@ -12,6 +12,7 @@ const HomeGeneralView: FunctionComponent = (props): JSX.Element => {
     // styles
     const classes = useStyles();    
     const imageRef: any = React.createRef();
+    const appContext: IAppContextState = useGlobalState();
 
     const handleLoading = () => {
         if (imageRef.current) imageRef.current.style.opacity = '1';
@@ -26,14 +27,14 @@ const HomeGeneralView: FunctionComponent = (props): JSX.Element => {
             </Grid>
             <Grid item xs={12} md={8} className={classes.boxTop}>
                 <Typography>
-                    Welcome to the <strong>Book.Of.Recipes.Easily.Done</strong>. <br/>
-                    A web application to create, store & share
-                    recipes among friends &amp; family.
+                    Welcome to the <strong>{appContext.title}</strong>. <br/>
+                    A web application to study &amp; store
+                    bible study notes, scriptures &amp; messages. 
                 </Typography>
                 <Typography className={classes.boxTop}>
                     You can open this web app on your browser &amp; it can also be saved on your mobile device to work as
-                    a native application. Also, after signing up, you will be able to - create (write) your own recipes, which
-                    you can save for your own reference or share with the world.
+                    a native application. Also, after signing up, you will be able to - create (write) your own groups, scriptues &amp; messages
+                    which you can save for your own reference or share with the world.
                 </Typography>
                 <Typography className={classes.boxTop} color="secondary">
                     This application is completely free to use &amp; is ad-free!
@@ -44,11 +45,6 @@ const HomeGeneralView: FunctionComponent = (props): JSX.Element => {
                 <Grid item xs={12} md={6} lg={3}>
                     <SimpleCardOverview title={'Sign In'} link={'login'} btnLabel={'Sign In'}>
                         Sign in with your Google Account
-                    </SimpleCardOverview>
-                </Grid>
-                <Grid item xs={12} md={6} lg={3}>
-                    <SimpleCardOverview title={'All Recipes'} link={'allRecipes'}>
-                        List all the free, public recipes
                     </SimpleCardOverview>
                 </Grid>
                 <Grid item xs={12} md={6} lg={3}>

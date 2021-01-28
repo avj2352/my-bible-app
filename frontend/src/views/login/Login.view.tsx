@@ -11,8 +11,8 @@ import {useStyles} from './login.style';
 import logo from './../../assets/img/logo.png';
 import { LinearLoader } from './../../components/loaders/linear-loader/LinearLoader';
 // context
-import { RouterDispatchContext, NAMED_ROUTES } from '../../router/context/RouterContext';
-import {AppStateContext, CONTEXT_ACTION_TYPE, useGlobalDispatch} from './../../common/context/AppContext';
+import { RouterDispatchContext } from '../../router/context/RouterContext';
+import {CONTEXT_ACTION_TYPE, IAppContextState, useGlobalState, useGlobalDispatch} from './../../common/context/AppContext';
 // notification
 import SimpleLinkButton from '../../components/buttons/links/SimpleLinkButton';
 
@@ -23,8 +23,7 @@ gsap.registerPlugin(CSSPlugin);
 
 const LoginView : FunctionComponent = () => {
     const classes = useStyles();
-    const appContext = useContext(AppStateContext);
-    const routeDispatch: any = useContext(RouterDispatchContext);
+    const appContext:IAppContextState = useGlobalState();
     const appDispatch: any = useGlobalDispatch();
     //states
     const [isLoading, setLoading] = useState(false);
@@ -69,7 +68,7 @@ const LoginView : FunctionComponent = () => {
                     <div className={classes.contentWrapper}>
                         <img src={logo} className={classes.imageIcon} alt="logo"/>
                         <Typography color="textSecondary" align="center" className={classes.title}>
-                            {`I AM B.O.R.E.D v${appContext.version}`}
+                            {`${appContext.title} v${appContext.version}`}
                         </Typography>
                         <LinearLoader display={isLoading}/>                        
                         <Button
@@ -85,7 +84,7 @@ const LoginView : FunctionComponent = () => {
                     </div>
                     <footer className={classes.footer}>
                         <SimpleLinkButton link="/about">
-                            About B.O.R.E.D
+                            About {appContext.title}
                         </SimpleLinkButton>
                         <Typography className={classes.footerText} variant="body2" color="textSecondary" align="center">
                             <a href="/">Home</a>
