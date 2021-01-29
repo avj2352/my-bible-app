@@ -74,7 +74,8 @@ export class GroupController {
             const result = await this.groupService.addNewGroup({
                 title: req.body.title,
                 slug: req.body.slug,
-                description: req.body.description
+                description: req.body.description,
+                createdBy: user._id
             });
             console.log(`${this.logger} - New Record added`, result);
             return res.status(201).send(result._id);
@@ -132,7 +133,7 @@ export class GroupController {
             const result = await this.groupService.updateGroupById(req.params.id, {
                 title: req.body.title,
                 description: req.body.description,
-                slug: req.body.slug,
+                slug: req.body.slug
             });
             console.log(`${this.logger} - Record updated: `, result);
             return res.sendStatus(200);

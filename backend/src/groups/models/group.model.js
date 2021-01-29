@@ -7,13 +7,11 @@ export const GroupSchema = new Schema({
     title: {
         type: String,
         required: 'Enter group title',
-        unique: true,
         trim: true,
     },
     slug: {
         type: String,
         required: 'Enter group slug',
-        unique: true,
         lowercase: true,
         trim: true,
     },

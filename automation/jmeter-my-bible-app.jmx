@@ -14,15 +14,9 @@
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Localhost" enabled="true">
         <collectionProp name="Arguments.arguments">
-          <elementProp name="cookie-session-admin" elementType="Argument">
-            <stringProp name="Argument.name">cookie-session-admin</stringProp>
-            <stringProp name="Argument.value">express:sess=eyJwYXNzcG9ydCI6eyJ1c2VyIjoiNWY5NzMzYWNmN2Q4NWQ0YWZjMGJlNjcyIn19; express:sess.sig=Kxkrg6jcTyXgH9_ZMZ_HkBlvok0</stringProp>
-            <stringProp name="Argument.desc">cookie session header of an admin user</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
           <elementProp name="cookie-session-user" elementType="Argument">
             <stringProp name="Argument.name">cookie-session-user</stringProp>
-            <stringProp name="Argument.value">express:sess=eyJwYXNzcG9ydCI6eyJ1c2VyIjoiNWY5YTVkMDI5NjhjMDI2NTE4MzQyZWVhIn19; express:sess.sig=QMts_v5Q8bqTM15jQGJa5lhqnM4 </stringProp>
+            <stringProp name="Argument.value">express:sess=eyJwYXNzcG9ydCI6eyJ1c2VyIjoiNjAxMmJjMTY2M2IyNzY2OTdhNDM4M2U0In19; express:sess.sig=-3BHOtdShuYD3aaXsSZDgO0ltpA</stringProp>
             <stringProp name="Argument.desc">cookie session header of a normal user</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
@@ -50,6 +44,11 @@
             <stringProp name="Argument.desc">Filter Recipe by Group Id</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="cookie-session-admin" elementType="Argument">
+            <stringProp name="Argument.name">cookie-session-admin</stringProp>
+            <stringProp name="Argument.value">express:sess=eyJwYXNzcG9ydCI6eyJ1c2VyIjoiNjAxMmJjMTY2M2IyNzY2OTdhNDM4M2U0In19; express:sess.sig=-3BHOtdShuYD3aaXsSZDgO0ltpA</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
         </collectionProp>
         <stringProp name="TestPlan.comments">Variables for DEV Environment</stringProp>
       </Arguments>
@@ -58,13 +57,13 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="cookie-session-admin" elementType="Argument">
             <stringProp name="Argument.name">cookie-session-admin</stringProp>
-            <stringProp name="Argument.value">express:sess=eyJwYXNzcG9ydCI6eyJ1c2VyIjoiNWY5NzMzYWNmN2Q4NWQ0YWZjMGJlNjcyIn19; express:sess.sig=Kxkrg6jcTyXgH9_ZMZ_HkBlvok0</stringProp>
+            <stringProp name="Argument.value">express:sess=eyJwYXNzcG9ydCI6eyJ1c2VyIjoiNjAxMmJjMTY2M2IyNzY2OTdhNDM4M2U0In19; express:sess.sig=-3BHOtdShuYD3aaXsSZDgO0ltpA</stringProp>
             <stringProp name="Argument.desc">cookie session header of an admin user</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="cookie-session-user" elementType="Argument">
             <stringProp name="Argument.name">cookie-session-user</stringProp>
-            <stringProp name="Argument.value">express:sess=eyJwYXNzcG9ydCI6eyJ1c2VyIjoiNWY5YTVkMDI5NjhjMDI2NTE4MzQyZWVhIn19; express:sess.sig=QMts_v5Q8bqTM15jQGJa5lhqnM4 </stringProp>
+            <stringProp name="Argument.value">express:sess=eyJwYXNzcG9ydCI6eyJ1c2VyIjoiNjAxMmJjMTY2M2IyNzY2OTdhNDM4M2U0In19; express:sess.sig=-3BHOtdShuYD3aaXsSZDgO0ltpA</stringProp>
             <stringProp name="Argument.desc">cookie session header of a normal user</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
@@ -96,7 +95,7 @@
         <stringProp name="TestPlan.comments">Variables for Heroku Environment</stringProp>
       </Arguments>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Auth Module" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Auth Module" enabled="true">
         <stringProp name="TestPlan.comments">Module to check user authentication</stringProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -190,7 +189,7 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Groups Module" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Groups Module" enabled="true">
         <stringProp name="TestPlan.comments">Module containing API for CRUD - groups</stringProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -199,62 +198,12 @@
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration">1</stringProp>
         <stringProp name="ThreadGroup.delay">1</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Groups - Premium" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
-          <stringProp name="HTTPSampler.port">${port}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/groups</stringProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="TestPlan.comments">GET request with Cookie session</stringProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Cookie</stringProp>
-                <stringProp name="Header.value">${cookie-session-admin}</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Groups - Non Premium" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
-          <stringProp name="HTTPSampler.port">${port}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/groups</stringProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="TestPlan.comments">GET request for getting all records of groups for a non authenticated user</stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Groups - Unauthorized" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
@@ -281,47 +230,6 @@
             </collectionProp>
             <stringProp name="TestPlan.comments">Response Assertion - Should return 401 error response</stringProp>
             <stringProp name="Assertion.custom_message">Response code is not matching</stringProp>
-            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-            <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">8</intProp>
-          </ResponseAssertion>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Groups - Authenticated but not Admin" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
-          <stringProp name="HTTPSampler.port">${port}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/groups</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="TestPlan.comments">POST request to add a new record will throw Unauthorized if user is authenticated but is not admin</stringProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Cookie</stringProp>
-                <stringProp name="Header.value">${cookie-session-user}</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Returns 401" enabled="true">
-            <collectionProp name="Asserion.test_strings">
-              <stringProp name="51509">401</stringProp>
-            </collectionProp>
-            <stringProp name="TestPlan.comments">Response Assertion - Should return 401 error response</stringProp>
-            <stringProp name="Assertion.custom_message">Response Code is not matching / User is having admin access!</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
             <intProp name="Assertion.test_type">8</intProp>
@@ -389,8 +297,7 @@
                 <stringProp name="Argument.value">{&#xd;
 	&quot;title&quot;: &quot;Test Data&quot;,&#xd;
 	&quot;slug&quot;: &quot;test&quot;,&#xd;
-	&quot;description&quot;: &quot;JMeter Test Data to be added &amp; deleted&quot;,&#xd;
-	&quot;premium&quot;: false	&#xd;
+	&quot;description&quot;: &quot;JMeter Test Data to be added &amp; deleted&quot;&#xd;
 }&#xd;
 </stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -460,6 +367,36 @@ vars.put(&quot;groupId&quot;, id);</stringProp>
           </BeanShellPostProcessor>
           <hashTree/>
         </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Groups - Premium" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port">${port}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/groups</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">GET request with Cookie session</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Cookie</stringProp>
+                <stringProp name="Header.value">${cookie-session-admin}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Groups - Duplicate Record" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
@@ -467,10 +404,9 @@ vars.put(&quot;groupId&quot;, id);</stringProp>
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;title&quot;: &quot;Chinese&quot;,&#xd;
-	&quot;slug&quot;: &quot;chinese&quot;,&#xd;
-	&quot;description&quot;: &quot;Delicious chinese recipes&quot;,&#xd;
-	&quot;premium&quot;: true	&#xd;
+	&quot;title&quot;: &quot;Mark Series&quot;,&#xd;
+	&quot;slug&quot;: &quot;mark&quot;,&#xd;
+	&quot;description&quot;: &quot;Collection of studies on Mark&quot;&#xd;
 }&#xd;
 </stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -490,7 +426,7 @@ vars.put(&quot;groupId&quot;, id);</stringProp>
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout">400</stringProp>
-          <stringProp name="TestPlan.comments">POST request to add a new record fails because the record already exists</stringProp>
+          <stringProp name="TestPlan.comments">POST request to add a duplicate record succeeds</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
@@ -506,13 +442,13 @@ vars.put(&quot;groupId&quot;, id);</stringProp>
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Returns Duplicate Record" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Returns 201 with the key of record" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="297993542">Duplicate Record</stringProp>
+              <stringProp name="49587">201</stringProp>
             </collectionProp>
             <stringProp name="TestPlan.comments">Response Assertion on Text Response</stringProp>
             <stringProp name="Assertion.custom_message">Response message not matching </stringProp>
-            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">true</boolProp>
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
@@ -652,8 +588,7 @@ vars.put(&quot;groupId&quot;, id);</stringProp>
                 <stringProp name="Argument.value">{&#xd;
 	&quot;title&quot;: &quot;Test Data 01&quot;,&#xd;
 	&quot;slug&quot;: &quot;test01&quot;,&#xd;
-	&quot;description&quot;: &quot;JMeter - Updated Test Data&quot;,&#xd;
-	&quot;premium&quot;: false	&#xd;
+	&quot;description&quot;: &quot;JMeter - Updated Test Data&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -675,7 +610,7 @@ vars.put(&quot;groupId&quot;, id);</stringProp>
           <stringProp name="TestPlan.comments">PUT request to update group record details by its ID</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Returns 200" enabled="false">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Returns 200" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
             </collectionProp>
@@ -686,11 +621,11 @@ vars.put(&quot;groupId&quot;, id);</stringProp>
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="false">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Cookie</stringProp>
-                <stringProp name="Header.value">${cookie-session-admin}</stringProp>
+                <stringProp name="Header.value">${cookie-session-user}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Content-Type</stringProp>
@@ -699,7 +634,7 @@ vars.put(&quot;groupId&quot;, id);</stringProp>
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="false">
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
             <boolProp name="resetInterpreter">false</boolProp>
@@ -717,8 +652,7 @@ props.put(&quot;groupId&quot;,id);</stringProp>
                 <stringProp name="Argument.value">{&#xd;
 	&quot;title&quot;: &quot;Test Data 01&quot;,&#xd;
 	&quot;slug&quot;: &quot;test01&quot;,&#xd;
-	&quot;description&quot;: &quot;JMeter - Updated Test Data&quot;,&#xd;
-	&quot;premium&quot;: false	&#xd;
+	&quot;description&quot;: &quot;JMeter - Updated Test Data&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -822,8 +756,7 @@ props.put(&quot;groupId&quot;,id);</stringProp>
                 <stringProp name="Argument.value">{&#xd;
 	&quot;title&quot;: &quot;Test Data 01&quot;,&#xd;
 	&quot;slug&quot;: &quot;test01&quot;,&#xd;
-	&quot;description&quot;: &quot;JMeter - Updated Test Data&quot;,&#xd;
-	&quot;premium&quot;: false	&#xd;
+	&quot;description&quot;: &quot;JMeter - Updated Test Data&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -1159,14 +1092,14 @@ props.put(&quot;groupId&quot;,id);</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Tags Module" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Tags Module" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">2</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
@@ -3693,7 +3626,7 @@ vars.put(&quot;timerId&quot;, id);</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Recipe Module" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Recipe Module" enabled="false">
         <stringProp name="TestPlan.comments">Module containing API for CRUD - recipes</stringProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -4593,7 +4526,7 @@ log.info(&quot;Recipe record created successfully. Record is: &quot; + id);</str
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Recipes - Premium" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Recipes - Premium" enabled="false">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -4634,17 +4567,16 @@ log.info(&quot;Recipe record created successfully. Record is: &quot; + id);</str
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Groups - Add new Record" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Groups - Add new Record" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;title&quot;: &quot;Indian Recipes&quot;,&#xd;
-	&quot;slug&quot;: &quot;indian&quot;,&#xd;
-	&quot;description&quot;: &quot;Collection of Indian Recipes&quot;,&#xd;
-	&quot;premium&quot;: false	&#xd;
+	&quot;title&quot;: &quot;Mark Series&quot;,&#xd;
+	&quot;slug&quot;: &quot;mark&quot;,&#xd;
+	&quot;description&quot;: &quot;Collection of studies on Mark&quot;&#xd;
 }&#xd;
 </stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
