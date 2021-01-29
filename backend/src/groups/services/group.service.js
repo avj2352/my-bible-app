@@ -115,8 +115,7 @@ export class GroupService {
      * @param text {string} full text query string
      * @returns Promise<any>
      */
-    async searchFullText (text) {
-        console.log('Calling Full text query: ', text);
+    async searchFullText (text) {        
         return new Promise((resolve, reject) => {
             GroupModel.find({$text: {$search: text}})
             .lean().populate('createdBy', 'name email')
