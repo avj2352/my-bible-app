@@ -39,8 +39,16 @@ export function getGoogleOAuthRedirect () {
 
 // BIBLE API (RAPIDSHARE) ==============================
 
-export function getBibleAPI () {
-    return process.env.bibleApiConfig || bibleApiConfig;
+export function getBibleAPIKey () {
+    return process.env.bibleApiKey || bibleApiConfig.api_key;
+}
+
+export function getBibleVerseURL () {
+    return process.env.bibleApiVerseUrl || bibleApiConfig.get_verse_url;
+}
+
+export function getBibleAPIHost () {
+    return process.env.bibleApiHost || bibleApiConfig.api_host;
 }
 
 /**

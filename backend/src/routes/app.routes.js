@@ -72,6 +72,9 @@ const routes = (app) => {
     // search Scriptures
     app.route('/scriptures/search/text')
         .get(scripture.search);
+    // fetch bible api
+    app.route('/scriptures/fetch/verse')
+        .get(scripture.fetchScriptureVerse);
 
     // TIMER ===============================
     app.route('/timers')

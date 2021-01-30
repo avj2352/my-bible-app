@@ -133,6 +133,7 @@ export class ArticleService {
      * @returns {Promise<any>}
      */
     async updateArticleById (id, payload) {
+        console.log(`${this.logger} - Updating record: ${id} ${JSON.stringify(payload)}`.info);
         return new Promise((resolve, reject) => {
             const { title, link, content, html, userId, groupId, tags, scriptures } = payload;
             ArticleModel.findOneAndUpdate({_id: id}, {

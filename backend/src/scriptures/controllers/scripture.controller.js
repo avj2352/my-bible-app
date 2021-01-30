@@ -34,6 +34,12 @@ export class ScriptureController {
             !req.body.verse || req.body.verse === '';
     }
 
+    validateFetchQueryParams (req) {
+        return !req.query.book || req.query.book === '' ||
+            !req.query.chapter || req.query.chapter === '' ||
+            !req.query.verse || req.query.verse === '';
+    }
+
     /**
      * PAJ - Fetch Scripture Verse. Requires Cookie Session
      * @param req
@@ -44,9 +50,10 @@ export class ScriptureController {
         // check if authenticated
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
-        if (this.validatePayload(req)) return res.sendStatus(400);
+        if (this.validateFetchQueryParams (req)) return res.sendStatus(400);
         try {
-            const { book, chapter, verse } = req.body;
+            const { book, chapter, verse } = req.query;
+            console.log(`${this.logger} - Fetching verse from query params: ${book} - ${chapter}:${verse}`.info);
             const result = await this.scriptureService.fetchScriptureVerse(book, chapter, verse);
             return res.json(result);
         }catch(err) {
@@ -191,6 +198,7 @@ export class ScriptureController {
                 result = await this.scriptureService.searchFullText(req.query.text);
                 return res.status(200).send(result);
             } else if (req.query.type === 'partial') {
+                console.log('Doing partial search!', req.query.text);
                 result = await this.scriptureService.searchPartialText(req.query.text);
                 return res.status(200).send(result);
             } else {

@@ -1,10 +1,13 @@
 require('../../util/colors');
 const unirest = require("unirest");
-import { getBibleAPI } from './../../util/config.util';
+import {
+    getBibleAPIKey, getBibleVerseURL, getBibleAPIHost
+} from './../../util/config.util';
 
 // CONSTANTS
-const GET_VERSE_URL = "https://ajith-holy-bible.p.rapidapi.com/GetVerseOfaChapter";
-const API_HOST = "ajith-holy-bible.p.rapidapi.com";
+const GET_VERSE_URL = getBibleVerseURL();
+const API_HOST = getBibleAPIHost();
+const API_KEY = getBibleAPIKey();
 
 /**
  * DAO Client to access Bible API
@@ -14,16 +17,10 @@ export class ScriptureDaoClient {
     constructor() {
         this.logger = `ScriptureDaoClient`;
         console.log(`ScriptureDaoClient - initializing`.info);
-        const apiKey = getBibleAPI();
-        this.request = unirest("GET", GET_VERSE_URL);
-        this.request.headers({
-            "x-rapidapi-key": apiKey,
-            "x-rapidapi-host": API_HOST,
-            "useQueryString": true
-        });
         // Bind methods
         this.getScriptureVerse = this.getScriptureVerse.bind(this);
     }
+
 
     /**
      * Get Scripture verse from Bible API
@@ -33,15 +30,26 @@ export class ScriptureDaoClient {
      * @returns Promise<any>
      */
     async getScriptureVerse (book, chapter, verse) {
-        const promise = new Promise((resolve, reject)=>{
-            this.request.query({
+        console.log(`Calling TEST bible api: ${book} - ${chapter}:${verse}`.info);
+        const promise = new Promise((resolve, reject) => {
+            var unirest = require("unirest");
+            var req = unirest("GET", GET_VERSE_URL);
+
+            req.query({
                 "Verse": verse,
                 "Book": book,
                 "chapter": chapter
             });
-            this.request.end(function (result) {
-                if (result.error) reject(result.error);
-                else resolve(result.body);
+
+            req.headers({
+                "x-rapidapi-key": API_KEY,
+                "x-rapidapi-host": API_HOST,
+                "useQueryString": true
+            });
+
+            req.end(function (res) {
+                if (res.error) reject(res.error);
+                resolve(res.body);
             });
         });
         return promise;

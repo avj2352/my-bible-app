@@ -156,11 +156,13 @@ export class ArticleController {
      * @returns {Promise<*>}
      */
     async updateArticleById (req, res) {
+        console.log(`${this.logger} - Updating record`.info);
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
         if (this.validatePayload(req)) return res.status(400).send('Invalid Payload');
+        console.log(`${this.logger} - Payload: ${user} - ${JSON.stringify(req.body)}`.info);
         try {
-            const result = await this.recipeService.updateRecipeById( req.params.id, {
+            const result = await this.articleService.updateArticleById( req.params.id, {
                 title: req.body.title,
                 link: req.body.link ? req.body.link : '',
                 userId: req.user.id,

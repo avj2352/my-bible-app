@@ -100,7 +100,7 @@ export class ScriptureService {
     async searchFullText (text) {
         console.log(`${this.logger} - Calling Full text query: `, text);
         return new Promise((resolve, reject) => {
-            ScriptureModel.find({$text: {$search: text}}, (err, data) => {
+            ScriptureModel.find({$text: {$search: text}}, {__v:0}, (err, data) => {
                 if (err) reject(err);
                 else resolve(data); // Get JSON format of contact
             });
@@ -113,9 +113,8 @@ export class ScriptureService {
      * @returns Promise<any>
      */
     async searchPartialText (partial) {
-        console.log(`${this.logger} - Calling Partial text query: `, text);
         return new Promise((resolve, reject) => {
-            ScriptureModel.find({description: {$regex: new RegExp(partial)}}, {_id:0, __v:0}, (err, data) => {
+            ScriptureModel.find({book: {$regex: new RegExp(partial)}}, {__v:0}, (err, data) => {
                 if (err) reject(err);
                 else resolve(data); // Get JSON format of contact
             });
@@ -132,7 +131,7 @@ export class ScriptureService {
      */
     async fetchScriptureVerse(book, chapter, verse) {
         try {
-            const result = await this.daoClient.getScriptureVerse();
+            const result = await this.daoClient.getScriptureVerse(book, chapter, verse);
             return result;
         } catch (err) {
             throw new Error(`Error fetching scripture api: ${err}`);

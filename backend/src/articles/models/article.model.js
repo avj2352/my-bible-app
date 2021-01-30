@@ -11,7 +11,6 @@ export const ArticleSchema = new Schema({
     title: {
         type: String,
         required: 'Enter Article Title',
-        unique: true,
         lowercase: true,
         trim: true,
     },
