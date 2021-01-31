@@ -112,7 +112,7 @@ export class TimerController {
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
         try {
-            const result = await this.timerService.getTimerById(req.params.timerId);
+            const result = await this.timerService.getTimerById(req.params.id);
             return res.status(200).json(result);
         } catch (err) {
             console.log(`${this.logger} Error Retrieving Id: ${JSON.stringify(err)}`.error);
@@ -129,12 +129,12 @@ export class TimerController {
      * @returns Promise<any>
      */
     async deleteTimerById (req, res) {
-        console.log(`${this.logger} - Delete item ID: ${JSON.stringify(req.params.timerId)}`.info);
+        console.log(`${this.logger} - Delete item ID: ${JSON.stringify(req.params.id)}`.info);
         // check if authenticated
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
         try {
-            const result = await this.timerService.deleteTimerById(req.params.timerId);
+            const result = await this.timerService.deleteTimerById(req.params.id);
             console.log(`${this.logger} - Record deleted: `, result);
             return res.sendStatus(200);
         } catch (err) {

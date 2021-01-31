@@ -9,6 +9,7 @@ const serverConfig = config.get('server');
 const dbConfig = config.get('db');
 const googleConfig = config.get('google');
 const jwtConfig = config.get('jwt');
+const bibleApiConfig = config.get('bible_api');
 
 // MAIN ==============================================
 
@@ -34,6 +35,20 @@ export function getGoogleClientSecret () {
 
 export function getGoogleOAuthRedirect () {
     return process.env.gOAuthRedirect || googleConfig.oauth_redirect_uri;
+}
+
+// BIBLE API (RAPIDSHARE) ==============================
+
+export function getBibleAPIKey () {
+    return process.env.bibleApiKey || bibleApiConfig.api_key;
+}
+
+export function getBibleVerseURL () {
+    return process.env.bibleApiVerseUrl || bibleApiConfig.get_verse_url;
+}
+
+export function getBibleAPIHost () {
+    return process.env.bibleApiHost || bibleApiConfig.api_host;
 }
 
 /**

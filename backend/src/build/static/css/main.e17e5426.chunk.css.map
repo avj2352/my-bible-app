@@ -1,0 +1,1 @@
+{"version":3,"sources":["ck-editor.css"],"names":[],"mappings":"AAAA,cAEI,UAAW,CACX,eACJ,CAEA,6CALI,6CAOJ","file":"main.e17e5426.chunk.css","sourcesContent":["div.cke_reset {\n    font-family: 'Montserrat', sans-serif !important;\n    width: 100%;\n    min-width: 300px;\n}\n\ndiv.cke_reset .cke_voice_label {\n    font-family: 'Montserrat', sans-serif !important;\n}"]}

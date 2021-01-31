@@ -91,12 +91,12 @@ export class TagController {
      * @returns {Promise<*>}
      */
     async getTagById (req, res) {
-        console.log(`${this.logger} - Tag ID is: ${JSON.stringify(req.params.tagId)}`.info);
+        console.log(`${this.logger} - Tag ID is: ${JSON.stringify(req.params.id)}`.info);
         // check if authenticated
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
         try {
-            const result = await this.tagService.getTagById(req.params.tagId);
+            const result = await this.tagService.getTagById(req.params.id);
             return res.json(result);
         } catch (err) {
             console.log(`${this.logger} Error Retrieving Id: ${JSON.stringify(err)}`.error);
@@ -111,7 +111,7 @@ export class TagController {
      * @returns {Promise<*>}
      */
     async updateTagById (req, res) {
-        console.log(`${this.logger} - Tag ID is: ${JSON.stringify(req.params.tagId)}`.info);
+        console.log(`${this.logger} - Tag ID is: ${JSON.stringify(req.params.id)}`.info);
         // check if authenticated
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
@@ -119,7 +119,7 @@ export class TagController {
             return res.sendStatus(400);
         }
         try {
-            const result = await this.tagService.updateTagById(req.params.tagId, {
+            const result = await this.tagService.updateTagById(req.params.id, {
                 name: req.body.name,
                 description: req.body.description
             });
@@ -138,12 +138,12 @@ export class TagController {
      * @returns {Promise<*>}
      */
     async deleteTagById(req, res) {
-        console.log(`${this.logger} - Tag ID is: ${JSON.stringify(req.params.tagId)}`.info);
+        console.log(`${this.logger} - Tag ID is: ${JSON.stringify(req.params.id)}`.info);
         // check if authenticated
         const user = this.authService.fetchUserDetails(req);
         if (!Boolean(user)) return res.sendStatus(401);
         try {
-            await this.tagService.deleteTagById(req.params.tagId);
+            await this.tagService.deleteTagById(req.params.id);
             return res.sendStatus(200);
         } catch (err) {
             console.log(`${this.logger} Error updating record: ${JSON.stringify(err)}`.error);

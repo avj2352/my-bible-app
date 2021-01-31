@@ -1,9 +1,9 @@
 {
     "name": "B.O.R.E.D",
     "short_name": "B.O.R.E.D",
-    "start_url": ".",
+    "start_url": "index.html",
     "display": "standalone",
-    "background_color": "#16558C",
+    "background_color": "#00B4D8",
     "theme_color": "#00B4D8",
     "orientation": "portrait-primary",
     "icons": [

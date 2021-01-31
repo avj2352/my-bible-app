@@ -6,8 +6,7 @@ import {User} from "../models/user.model";
  export class AuthService {
     constructor() {
         // bind
-        this.fetchUserDetails = this.fetchUserDetails.bind(this);
-        this.checkIfAdminUser = this.checkIfAdminUser.bind(this);
+        this.fetchUserDetails = this.fetchUserDetails.bind(this);        
         this.addNewUser = this.addNewUser.bind(this);
         this.findUserRecordById = this.findUserRecordById.bind(this);
         this.findUserRecordByGoogleId = this.findUserRecordByGoogleId.bind(this);
@@ -26,29 +25,7 @@ import {User} from "../models/user.model";
          }
      }
 
-     /**
-      * Check user role is admin
-      * @param user {role}
-      * @returns {boolean}
-      */
-     checkIfAdminUser (user) {
-         if (user.role && user.role === 'admin') return true;
-         else return false;
-     }
-
-     /**
-      * PAJ - Find User record by Mongo DB id
-      * @param id string - Mongo DB Id
-      **/
-     async findUserRecordById (id) {
-         const result = await User.findById(id);
-         if (result) {
-             return result;
-         } else {
-             return null;
-         }
-     }
-
+     
      /**
       * PAJ - Add Google Record to Mongo DB
       * @param profile any - Google profile object
@@ -61,6 +38,19 @@ import {User} from "../models/user.model";
         });
         record.save();
         return record;
+    }
+
+    /**
+      * PAJ - Find User record by Mongo DB id
+      * @param id string - Mongo DB Id
+      **/
+     async findUserRecordById (id) {
+        const result = await User.findById(id);
+        if (result) {
+            return result;
+        } else {
+            return null;
+        }
     }
 
     /**

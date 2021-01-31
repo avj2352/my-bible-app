@@ -16,8 +16,8 @@ export enum CONTEXT_ACTION_TYPE {
 export const initialState: IAppContextState = {
     profile: undefined,
     theme: 'light',
-    version: '0.4',
-    title: 'B.O.R.E.D'
+    version: '0.1',
+    title: 'My Bible App'
 };
 
 export const AppStateContext = createContext<IAppContextState>(initialState); // Separate context for storing state

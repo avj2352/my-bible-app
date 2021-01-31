@@ -5,16 +5,16 @@
 import { AuthController } from '../auth/controllers/auth.controller';
 import {GroupController} from "../groups/controllers/group.controller";
 import {TagController} from "../tags/controllers/tag.controller";
-import {ItemController} from "../items/controllers/item.controller";
+import {ScriptureController} from "../scriptures/controllers/scripture.controller";
 import {TimerController} from "../timers/controllers/timer.controller";
-import {RecipeController} from "../recipes/controllers/recipe.controller";
+import {ArticleController} from "../articles/controllers/article.controller";
 
 const auth = new AuthController();
 const group = new GroupController();
 const tag = new TagController();
-const item = new ItemController();
+const scripture = new ScriptureController();
 const timer = new TimerController();
-const recipe = new RecipeController();
+const article = new ArticleController();
 
 const routes = (app) => {
     // AUTHENTICATION =======================
@@ -36,7 +36,7 @@ const routes = (app) => {
         .post(group.addNewGroup);
 
     // RUD Groups
-    app.route('/groups/:groupId')
+    app.route('/groups/:id')
         .get(group.getGroupById)
         .put(group.updateGroupById)
         .delete(group.deleteGroupById);
@@ -50,7 +50,7 @@ const routes = (app) => {
         .post(tag.addNewTag);
 
     // RUD Tags
-    app.route('/tags/:tagId')
+    app.route('/tags/:id')
         .get(tag.getTagById)
         .put(tag.updateTagById)
         .delete(tag.deleteTagById);
@@ -59,50 +59,53 @@ const routes = (app) => {
         .get(tag.search);
 
 
-    // ITEMS ===============================
-    app.route('/items')
-        .get(item.getItems)
-        .post(item.addNewItem);
+    // SCRIPTURES ===============================
+    app.route('/scriptures')
+        .get(scripture.getScriptures)
+        .post(scripture.addNewScripture);
 
-    // RUD Items
-    app.route('/items/:itemId')
-        .get(item.getItemById)
-        .put(item.updateItemById)
-        .delete(item.deleteItemById);
-    // search Items
-    app.route('/items/search/text')
-        .get(item.search);
+    // RUD Scriptures
+    app.route('/scriptures/:id')
+        .get(scripture.getScriptureById)
+        .put(scripture.updateScriptureById)
+        .delete(scripture.deleteScriptureById);
+    // search Scriptures
+    app.route('/scriptures/search/text')
+        .get(scripture.search);
+    // fetch bible api
+    app.route('/scriptures/fetch/verse')
+        .get(scripture.fetchScriptureVerse);
 
     // TIMER ===============================
     app.route('/timers')
         .post(timer.addNewTimer);
 
     // RUD Timers
-    app.route('/timers/:timerId')
+    app.route('/timers/:id')
         .get(timer.getTimerById)
         .delete(timer.deleteTimerById);
 
-    // RECIPE ===============================
-    app.route('/recipes')
-        .get(recipe.getRecipes)
-        .post(recipe.addNewRecipe);
+    // ARTICLES ===============================
+    app.route('/articles')
+        .get(article.getArticlesByUserId)
+        .post(article.addNewArticle);
+    
+    app.route('/articles/group/:id')
+        .get(article.getArticlesByGroupId);
+    
+        // RUD Articles
+    app.route('/articles/:id')
+        .get(article.getArticleById)
+        .put(article.updateArticleById)
+        .delete(article.deleteArticleById);
 
-    app.route ('/publicRecipes')
-        .get(recipe.getPublicRecipes);
-        
-    app.route('/recipes/group/:groupId')
-        .get(recipe.getRecipeByGroupId);
-    // RUD Recipes
-    app.route('/recipes/:recipeId')
-        .get(recipe.getRecipeById)
-        .put(recipe.updateRecipeById)
-        .delete(recipe.deleteRecipeById);
-    // RUD Recipes by User
-    app.route('/recipes/search/user')
-        .get(recipe.getRecipesByUserId)
-    // search Recipes
-    app.route('/recipes/search/text')
-        .get(recipe.search);
+    // Admin related   
+    app.route('/articles/search/admin')
+        .get(article.getArticles);
+
+    // search Articles
+    app.route('/articles/search/text')
+        .get(article.search);
 };
 
 

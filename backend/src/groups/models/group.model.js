@@ -7,13 +7,11 @@ export const GroupSchema = new Schema({
     title: {
         type: String,
         required: 'Enter group title',
-        unique: true,
         trim: true,
     },
     slug: {
         type: String,
         required: 'Enter group slug',
-        unique: true,
         lowercase: true,
         trim: true,
     },
@@ -21,10 +19,9 @@ export const GroupSchema = new Schema({
         type: String,
         required: 'Provide group description'
     },
-    // premium true is only made available for subscribed users
-    premium: {
-        type: Boolean,
-        required: 'Public or Private collection'
+    createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
     }
 });
 
