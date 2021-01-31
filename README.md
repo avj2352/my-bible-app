@@ -2,6 +2,11 @@
 
 This is a clone repository of `I-AM-BORED` which is a Progressive Web application for maintaining my bible notes.
 
+## Link to the Application
+
+- [My Bible App](https://mba-pwa.herokuapp.com)
+
+
 CODE TIME PROJECT SUMMARY     (Last updated on Sun, Jan 31st 3:03am)
 
                 my-bible-app :               Jan 24th, 2021 to Jan 30th, 2021
@@ -14,7 +19,6 @@ CODE TIME PROJECT SUMMARY     (Last updated on Sun, Jan 31st 3:03am)
             Characters added :                                         29,688
           Characters deleted :                                         21,688
 -----------------------------------------------------------------------------
-g
 
 ## Data Model
 ![DataModel Diagram](./design/data-model.png)
