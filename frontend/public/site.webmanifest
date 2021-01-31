@@ -1,6 +1,6 @@
 {
-  "name": "B.O.R.E.D",
-  "short_name": "B.O.R.E.D",
+  "name": "My Bible App",
+  "short_name": "M.B.A",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#00B4D8",
