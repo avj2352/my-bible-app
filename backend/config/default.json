@@ -1,0 +1,30 @@
+{
+  "server": {
+    "port": 5000
+  },
+  "google": {
+    "client_id": "896192510998-26lofha1h9lehlo1ofq4llhhfaualul9.apps.googleusercontent.com",
+    "client_secret": "LLZQYK2pOCf4gph_pKhu5L0o",
+    "login_dialog_uri": "",
+    "oauth_redirect_uri": "/auth/google/callback",
+    "access_token_uri": "",
+    "scopes": [
+      "https://www.googleapis.com/auth/plus.login",
+      "https://www.googleapis.com/auth/plus.profile.emails.read"
+    ],
+    "response_type": "code",
+    "grant_type": "authorization_code"
+  },
+  "jwt": {
+    "secret": "mba2021",
+    "expiry": 10
+  },
+  "db": {
+    "uri": "mongodb+srv://admin:zuko2352@own-apps-cluster.4jagm.mongodb.net/my-bible-app-dev?authSource=admin&replicaSet=atlas-rtd8tp-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
+  },
+  "bible_api": {
+    "api_key": "be4666b0d2msh7df854409ac980bp11bc3ajsncf32b40c5d2a",
+    "get_verse_url": "https://ajith-holy-bible.p.rapidapi.com/GetVerseOfaChapter",
+    "api_host": "ajith-holy-bible.p.rapidapi.com"
+  }
+}
