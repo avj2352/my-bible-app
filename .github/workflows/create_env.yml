@@ -43,9 +43,9 @@ jobs:
               "uri": "${{secrets.DB_URI}}"
             },
             "bible_api": {
-              "api_key": "${{BIBLE_API_KEY}}",
-              "get_verse_url": "${{BIBLE_VERSE_URL}}",
-              "api_host": "${{BIBLE_API_HOST}}"
+              "api_key": "${{secrets.BIBLE_API_KEY}}",
+              "get_verse_url": "${{secrets.BIBLE_VERSE_URL}}",
+              "api_host": "${{secrets.BIBLE_API_HOST}}"
             }
           }
           EOT
