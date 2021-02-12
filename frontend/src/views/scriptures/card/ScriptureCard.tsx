@@ -11,13 +11,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 import {makeStyles} from "@material-ui/core/styles";
 // custom
-import { ItemInterface } from "../common/item-interface";
+import { IScripture } from "../common/scripture-interface";
 import {useSnackbar} from "notistack";
 import { getSubText } from "../../../common/util/HelperFunctions";
 import ItemBadgeModal from "../../../components/badges/item-badge/ItemBadgeModal";
 
-interface ItemInterfaceCardProps extends ItemInterface {
-    onEdit: (data: ItemInterface ) => void;
+interface IScriptureCardProps extends IScripture {
+    onEdit: (data: IScripture ) => void;
     onDelete: (id: string) => void;
 }
 
@@ -66,7 +66,7 @@ export const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ItemCard: FunctionComponent<ItemInterfaceCardProps> = (props):JSX.Element => {
+const ScriptureCard: FunctionComponent<IScriptureCardProps> = (props):JSX.Element => {
     const { name, description, html, onDelete, onEdit } = props;
     const id = props.id? props.id: '';
     const classes = useStyles();
@@ -89,7 +89,7 @@ const ItemCard: FunctionComponent<ItemInterfaceCardProps> = (props):JSX.Element 
     };
 
     const handleDelete = () => {
-        enqueueSnackbar(`Are you sure you want to delete this Item?`, {variant: 'warning', action});
+        enqueueSnackbar(`Are you sure you want to delete this Scripture?`, {variant: 'warning', action});
     };
 
     return (
@@ -124,4 +124,4 @@ const ItemCard: FunctionComponent<ItemInterfaceCardProps> = (props):JSX.Element 
     );
 };
 
-export default ItemCard;
+export default ScriptureCard;

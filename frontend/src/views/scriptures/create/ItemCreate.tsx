@@ -1,4 +1,4 @@
-import React, {useState, useContext, FunctionComponent, useEffect, useCallback} from 'react';
+import React, {useState, FunctionComponent, useEffect, useCallback} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {LinearLoader} from "../../../components/loaders/linear-loader/LinearLoader";
 import ClassicEditor from '../../../components/editor/ClassicEditor';
-import { ItemInterface } from '../common/item-interface';
+import { IScripture } from '../common/scripture-interface';
 import { addNewItem } from '../../../common/async/AsyncCalls';
 
 
@@ -68,7 +68,7 @@ const ItemCreate: FunctionComponent<IItemCreateProps> = (props): JSX.Element => 
     const classes = useStyles();
     const { onCreateItem } = props;
     // state
-    const [itemData, setItemData] = useState<ItemInterface>({
+    const [itemData, setItemData] = useState<IScripture>({
         name: '',
         description: '',
         html: ''
@@ -86,7 +86,7 @@ const ItemCreate: FunctionComponent<IItemCreateProps> = (props): JSX.Element => 
     },[]);
 
     const handleTitleChange = (event: any) => {
-        setItemData((prev: ItemInterface) => {return {...prev, name: event.target.value}});
+        setItemData((prev: IScripture) => {return {...prev, name: event.target.value}});
     };
 
     const handleSubmit = () => {
@@ -104,7 +104,7 @@ const ItemCreate: FunctionComponent<IItemCreateProps> = (props): JSX.Element => 
     };
 
     const handleEditorChange = (text: string, html: string) => {
-        setItemData((prev: ItemInterface) => {return {...prev, description: text, html }});
+        setItemData((prev: IScripture) => {return {...prev, description: text, html }});
     }
     
 
