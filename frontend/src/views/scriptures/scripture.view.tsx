@@ -1,11 +1,10 @@
 import React, { FunctionComponent, useCallback, useEffect, useState } from 'react';
 // styling
-import { useStyles } from './item.view.style';
+import { useStyles } from './scripture.view.style';
 import { CssBaseline, Grid } from "@material-ui/core";
 import { useSnackbar } from "notistack";
 import CloseActionButton from "../../components/notifications/CloseActionButton";
 import ItemCreate from "./create/ItemCreate";
-import ItemSearch from "./search/ItemSearch";
 import ItemListSkeleton from "./loading/ItemListSkeleton";
 import { deleteItemById, getAllItems, searchByText } from '../../common/async/AsyncCalls';
 import { ItemInterface } from './common/item-interface';
@@ -15,7 +14,7 @@ import { ISearch } from '../../components/search/search-interface';
 import EmptySearchCard from '../../components/card/404/EmptySearchCard';
 import ItemUpdateModal from './update/ItemUpdateModal';
 
-const ItemView: FunctionComponent = (props): JSX.Element => {
+const ScriptureView: FunctionComponent = (props): JSX.Element => {
     const classes = useStyles();
     const { enqueueSnackbar} = useSnackbar();
     const getDefaultListContent = (): JSX.Element => <React.Fragment>
@@ -149,4 +148,4 @@ const ItemView: FunctionComponent = (props): JSX.Element => {
     );
 }
 
-export default ItemView;
+export default ScriptureView;
