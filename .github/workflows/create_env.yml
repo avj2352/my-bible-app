@@ -1,0 +1,58 @@
+# Create a default.json environment file under backend/config/ folder
+# Add Environment Variables from Repository Secrets
+name: Create env file
+on: 
+  push:
+    branches:
+      - dev
+   
+jobs:
+  run:
+    name: Create env file
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Create default.json file
+        run: |
+          echo -n "" > backend/config/default.json
+          cat <<EOT >> backend/config/default.json
+          {
+            "server": {
+              "port": ${{secrets.SERVER_PORT}}
+            },
+            "google": {
+              "client_id": "${{secrets.GOOGLE_CLIENT_ID}}",
+              "client_secret": "${{secrets.GOOGLE_CLIENT_SECRET}}",
+              "login_dialog_uri": "",
+              "oauth_redirect_uri": "${{secrets.OAUTH_REDIRECT}}",
+              "access_token_uri": "",
+              "scopes": [
+                "https://www.googleapis.com/auth/plus.login",
+                "https://www.googleapis.com/auth/plus.profile.emails.read"
+              ],
+              "response_type": "code",
+              "grant_type": "authorization_code"
+            },
+            "jwt": {
+              "secret": "${{secrets.JWT_SECRET}}",
+              "expiry": 10
+            },
+            "db": {
+              "uri": "${{secrets.DB_URI}}"
+            },
+            "bible_api": {
+              "api_key": "${{secrets.BIBLE_API_KEY}}",
+              "get_verse_url": "${{secrets.BIBLE_VERSE_URL}}",
+              "api_host": "${{secrets.BIBLE_API_HOST}}"
+            }
+          }
+          EOT
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: Pramod AJ
+          author_email: avj2352@gmail.com
+          message: 'Adding Environment file'
+          add: '*.json'
